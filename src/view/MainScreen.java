@@ -1,12 +1,17 @@
 package view;
 
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -14,6 +19,7 @@ public class MainScreen {
 	
 	private JFrame frame;
 	private final int SCREEN_WIDTH = 720, SCREEN_HEIGHT = 480;
+	private BufferedImage backgroundImage, openFileButtonImage, randomValuesButtonImage;
 	
 	public static void main(String args[]){
 		new MainScreen();
@@ -41,6 +47,16 @@ public class MainScreen {
 			setFocusable(true);
 			setLayout(null);
 			setPreferredSize(new Dimension(SCREEN_WIDTH, SCREEN_HEIGHT));
+			
+			// open image files
+			try{
+		    	backgroundImage = ImageIO.read(this.getClass().getResourceAsStream("/images/mainScreenBackground.jpg"));
+		    	openFileButtonImage = ImageIO.read(this.getClass().getResourceAsStream("/images/openFileButton.png"));
+		    	randomValuesButtonImage = ImageIO.read(this.getClass().getResourceAsStream("/images/randomValuesButton.png"));
+			}
+			catch(Exception e){
+				
+			}
 
 			initComponents();
 		}
@@ -48,16 +64,27 @@ public class MainScreen {
 		// initialize, configure and add all screen components
 		public void initComponents() {
 			// create screen components
-			JButton randomValuesButton = new JButton("Valores Aleatorios");
-			JButton choseFileButton = new JButton("Abrir Arquivo");
+			JButton randomValuesButton = new JButton(new ImageIcon(randomValuesButtonImage));
+			JButton openFileButton = new JButton(new ImageIcon(openFileButtonImage));
+			JLabel backgroundLabel = new JLabel(new ImageIcon(backgroundImage));
 			
 			// configure screen components
 			randomValuesButton.setBounds(270, 300, 200, 40);
-			choseFileButton.setBounds(270, 350, 200, 40);
+			openFileButton.setBounds(300, 350, 140, 40);
+			backgroundLabel.setBounds(0, 0, 720, 480);
+			openFileButton.setOpaque(false);
+			openFileButton.setContentAreaFilled(false);
+			openFileButton.setBorderPainted(false);
+			openFileButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			randomValuesButton.setOpaque(false);
+			randomValuesButton.setContentAreaFilled(false);
+			randomValuesButton.setBorderPainted(false);
+			randomValuesButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			
 			// add components to the screen
 			add(randomValuesButton);
-			add(choseFileButton);
+			add(openFileButton);
+			add(backgroundLabel);
 			
 			// random values button click
 			randomValuesButton.addActionListener(new ActionListener(){  
@@ -108,7 +135,7 @@ public class MainScreen {
 			});
 			
 			// chose file button click
-			choseFileButton.addActionListener(new ActionListener(){  
+			openFileButton.addActionListener(new ActionListener(){  
 				public void actionPerformed(ActionEvent e){
 					ArrayList<Integer> valuesList = new ArrayList<Integer>();
 					new AlgorithmsScreen(valuesList); // TODO
