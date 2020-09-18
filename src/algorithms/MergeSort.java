@@ -1,13 +1,15 @@
 package algorithms;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MergeSort {
 	
-	public static ArrayList<Integer> sort(ArrayList<Integer> list){
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static <T extends Comparable<? super T>> List<Comparable> sort(List<T> list){
 
 		// makes a copy of the list
-		ArrayList<Integer> sortedList = new ArrayList<Integer>();
+		List<Comparable> sortedList = new ArrayList<Comparable>();
 		for (int i = 0, size = list.size(); i < size; i++) {
 			sortedList.add(list.get(i));
 		}
@@ -19,8 +21,10 @@ public class MergeSort {
 		return sortedList;
 	}
 	
-	private static ArrayList<Integer> merge(ArrayList<Integer> left, ArrayList<Integer> right) {
-        ArrayList<Integer> merged = new ArrayList<>();
+	@SuppressWarnings({ "rawtypes" })
+	private static<T extends Comparable<? super T>> List<Comparable> merge(List<T> left, List<T> right) {
+        
+		List<Comparable> merged = new ArrayList<Comparable>();
         
         while (!left.isEmpty() && !right.isEmpty()) {
             if (left.get(0).compareTo(right.get(0)) <= 0) {
@@ -37,10 +41,11 @@ public class MergeSort {
         return merged;
     }
 
-    private static void mergeSort(ArrayList<Integer> list) {
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private static <T extends Comparable<? super T>> void mergeSort(List<T> list){
         if (list.size() != 1) {
-            ArrayList<Integer> left = new ArrayList<Integer>();
-            ArrayList<Integer> right = new ArrayList<Integer>();
+            List<Comparable> left = new ArrayList<Comparable>();
+            List<Comparable> right = new ArrayList<Comparable>();
             boolean logicalSwitch = true;
             
             while (!list.isEmpty()) {

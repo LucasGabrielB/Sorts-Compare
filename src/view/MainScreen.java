@@ -115,7 +115,7 @@ public class MainScreen {
 						    	ArrayList<Integer> valuesList = new ArrayList<Integer>();
 						    	
 						    	Random random = new Random();
-						    	for(int i = 0; i < listSize; i++){
+						    	for(int i = listSize; i > 0; i--){
 						    		valuesList.add(Math.abs(random.nextInt()));
 						    	}
 						    	

@@ -1,13 +1,15 @@
 package algorithms;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Quicksort {
 	
-	public static ArrayList<Integer> sort(ArrayList<Integer> list){
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static <T extends Comparable<? super T>> List<Comparable> sort(List<T> list){
 
 		// makes a copy of the list
-		ArrayList<Integer> sortedList = new ArrayList<Integer>();
+		List<Comparable> sortedList = new ArrayList<Comparable>();
 		for (int i = 0, size = list.size(); i < size; i++) {
 			sortedList.add(list.get(i));
 		}
@@ -20,7 +22,7 @@ public class Quicksort {
 	
 	}
 	
-	private static void quickSort(ArrayList<Integer> list, int begin, int end) {
+	private static <T extends Comparable<? super T>> void quickSort(List<T> list, int begin, int end) {
 		// check the indices and continue only if there are still elements to be sorted
 		if (begin < end) {
 			// we get the index of the sorted pivot and use it to recursively 
@@ -33,26 +35,26 @@ public class Quicksort {
 		}
 	
 	}
-
-	private static int partition(ArrayList<Integer> list, int begin, int end) {
-		int pivot = list.get(end);
+	
+	private static <T extends Comparable<? super T>> int partition(List<T> list, int begin, int end) {
+		T pivot = list.get(end);
 		int i = begin - 1;
 		
 		// checks each element and swaps it before the pivot if its value is smaller.
 		for (int j = begin; j < end; j++) {
-			if (list.get(j) <= pivot) {
+			if (list.get(j).compareTo(pivot) < 0 ) {
 				i++;
 	 
-				int tempN = list.get(i);
+				T temp = list.get(i);
 				list.set(i, list.get(j));
-				list.set(j, tempN);
+				list.set(j, temp);
 			}
 		
 		}
 		 
-		int tempN = list.get(i + 1);
+		T temp = list.get(i + 1);
 		list.set(i + 1, list.get(end));
-		list.set(end, tempN);
+		list.set(end, temp);
 		
 		// all elements less then the pivot are on the left of it 
 		// and all elements greater then the pivot are on the right of it

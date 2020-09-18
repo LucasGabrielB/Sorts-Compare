@@ -1,24 +1,27 @@
 package algorithms;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class BubbleSort {
-
-	public static ArrayList<Integer> sort(ArrayList<Integer> list){
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static <T extends Comparable<? super T>> List<Comparable> sort(List<T> list){
 		
 		// makes a copy of the list
-		ArrayList<Integer> sortedList = new ArrayList<Integer>();
+		List<Comparable> sortedList = new ArrayList<Comparable>();
 		for (int i = 0, size = list.size(); i < size; i++) {
 			sortedList.add(list.get(i));
 		}
 		
 		// sorts list using Bubble sort method
-		for(int i = 0, tempN = 0, size = list.size(); i < size; i++){
+		Comparable temp;
+		for(int i = 0, size = list.size(); i < size; i++){
 			for(int j = 0; j < size-1; j++){
-				if(sortedList.get(j) > sortedList.get(j + 1)){
-					tempN = sortedList.get(j);
+				if(sortedList.get(j).compareTo(sortedList.get(j + 1)) > 0){
+					temp = sortedList.get(j);
 					sortedList.set(j, sortedList.get(j+1));
-					sortedList.set(j + 1, tempN);
+					sortedList.set(j + 1, temp);
 				}
 			}
 		}
