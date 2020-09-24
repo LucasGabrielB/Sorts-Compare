@@ -120,7 +120,7 @@ public class MainScreen {
 						    	}
 						    	
 						    	new AlgorithmsScreen(valuesList);
-						    
+						    	dispose();
 						    }
 						
 						}
@@ -142,6 +142,14 @@ public class MainScreen {
 				}
 			});
 		
+		}
+		
+		// method to dispose this JPanel
+		public void dispose() {
+		    JFrame parent = (JFrame) this.getTopLevelAncestor();
+		    parent.dispose();
+		    removeAll();
+		   
 		}
 	
 	}
