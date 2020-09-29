@@ -26,7 +26,7 @@ public class AlgorithmsScreen {
 	
 	private JFrame frame;
 	private final int SCREEN_WIDTH = 720, SCREEN_HEIGHT = 480;
-	private BufferedImage backgroundImage, originalValuesButtonImage, sortedValuesButtonImage, comebackButtonImage;
+	private BufferedImage backgroundImage, originalValuesButtonImage, sortedValuesButtonImage, returnButtonImage;
 	@SuppressWarnings("rawtypes")
 	private List originalList;
 
@@ -56,6 +56,10 @@ public class AlgorithmsScreen {
 			// open image files
 			try{
 		    	backgroundImage = ImageIO.read(this.getClass().getResourceAsStream("/images/mainScreenBackground.jpg"));
+		    	sortedValuesButtonImage = ImageIO.read(this.getClass().getResourceAsStream("/images/sortedValuesButton.png"));
+		    	returnButtonImage = ImageIO.read(this.getClass().getResourceAsStream("/images/returnButton.png"));
+		    	originalValuesButtonImage = ImageIO.read(this.getClass().getResourceAsStream("/images/originalValuesButton.png"));
+		    	 
 			}
 			catch(Exception e){
 				
@@ -70,9 +74,9 @@ public class AlgorithmsScreen {
 
 			JTable resultsTable = new JTable();
 			JScrollPane resultsTableScrollPane = new JScrollPane();
-			JButton sortedValuesButton = new JButton("mostrar dados ordenados");
-			JButton comebackButton = new JButton("voltar");
-			JButton originalValuesButton = new JButton("mostrar dados originais");
+			JButton sortedValuesButton = new JButton(new ImageIcon(sortedValuesButtonImage));
+			JButton comebackButton = new JButton(new ImageIcon(returnButtonImage));
+			JButton originalValuesButton = new JButton(new ImageIcon(originalValuesButtonImage));
 			JLabel backgroundLabel = new JLabel(new ImageIcon(backgroundImage));
 			JLabel vizualizeValuesLabel = new JLabel("Vizualizar dados:");
 			JLabel resultLabel = new JLabel("Resultado:");
@@ -80,31 +84,34 @@ public class AlgorithmsScreen {
 			// configure screen components
 			backgroundLabel.setBounds(0, 0, 720, 480);
 
-			vizualizeValuesLabel.setBounds(40, 320, 200, 40);
+			vizualizeValuesLabel.setBounds(285, 320, 200, 40);
 			vizualizeValuesLabel.setFont(new Font("Arial", Font.BOLD, 20));
 			vizualizeValuesLabel.setForeground(Color.white);
 			
-			resultLabel.setBounds(40, 40, 200, 40);
+			resultLabel.setBounds(40, 85, 200, 40);
 			resultLabel.setFont(new Font("Arial", Font.BOLD, 20));
 			resultLabel.setForeground(Color.white);
 			
 			
-			sortedValuesButton.setBounds(60, 370, 200, 40);
+			sortedValuesButton.setBounds(200, 360, 330, 50);
 			sortedValuesButton.setOpaque(false);
 			sortedValuesButton.setBorderPainted(false);
+			sortedValuesButton.setContentAreaFilled(false);
 			sortedValuesButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			
-			comebackButton.setBounds(10, 10, 80, 20);
+			comebackButton.setBounds(10, 10, 210, 60);
 			comebackButton.setOpaque(false);
+			comebackButton.setContentAreaFilled(false);
 			comebackButton.setBorderPainted(false);
 			comebackButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			
-			originalValuesButton.setBounds(60, 420, 200, 40);
+			originalValuesButton.setBounds(200, 420, 330, 50);
+			originalValuesButton.setContentAreaFilled(false);
 			originalValuesButton.setOpaque(false);
 			originalValuesButton.setBorderPainted(false);
 			originalValuesButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			
-			resultsTableScrollPane.setBounds(50, 100, 618, 143);
+			resultsTableScrollPane.setBounds(50, 130, 618, 143);
 			resultsTableScrollPane.setViewportView(resultsTable);
 			resultsTable.setModel(new javax.swing.table.DefaultTableModel(
 					new Object[][]{
@@ -131,6 +138,7 @@ public class AlgorithmsScreen {
 			columnModel.getColumn(1).setCellRenderer(centerRenderer);
 			columnModel.getColumn(2).setCellRenderer(centerRenderer);
 			resultsTable.setEnabled(false);
+			resultsTable.setCellSelectionEnabled(false);
 			
 			// add components to the screen
 			add(comebackButton);
