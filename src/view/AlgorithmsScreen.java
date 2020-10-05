@@ -93,19 +93,19 @@ public class AlgorithmsScreen {
 			resultLabel.setForeground(Color.white);
 			
 			
-			sortedValuesButton.setBounds(200, 360, 330, 50);
+			sortedValuesButton.setBounds(265, 360, 200, 45);
 			sortedValuesButton.setOpaque(false);
 			sortedValuesButton.setBorderPainted(false);
 			sortedValuesButton.setContentAreaFilled(false);
 			sortedValuesButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			
-			comebackButton.setBounds(10, 10, 210, 60);
+			comebackButton.setBounds(10, 10, 145, 50);
 			comebackButton.setOpaque(false);
 			comebackButton.setContentAreaFilled(false);
 			comebackButton.setBorderPainted(false);
 			comebackButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			
-			originalValuesButton.setBounds(200, 420, 330, 50);
+			originalValuesButton.setBounds(265, 410, 200, 45);
 			originalValuesButton.setContentAreaFilled(false);
 			originalValuesButton.setOpaque(false);
 			originalValuesButton.setBorderPainted(false);
