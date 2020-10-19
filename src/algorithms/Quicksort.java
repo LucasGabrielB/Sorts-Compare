@@ -1,36 +1,24 @@
 package algorithms;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class Quicksort {
-	
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public static <T extends Comparable<? super T>> List<Comparable> sort(List<T> list){
+public class Quicksort{
 
-		// makes a copy of the list
-		List<Comparable> sortedList = new ArrayList<Comparable>();
-		for (int i = 0, size = list.size(); i < size; i++) {
-			sortedList.add(list.get(i));
-		}
-		
+	public static <T extends Comparable<? super T>> void sort(List<T> list){	
 		// sorts list using Quicksort method
-		quickSort(sortedList, 0, sortedList.size() - 1);
-		
-		// returns the sorted list
-		return sortedList;
+		sort(list, 0, list.size() - 1);
 	
 	}
 	
-	private static <T extends Comparable<? super T>> void quickSort(List<T> list, int begin, int end) {
+	private static <T extends Comparable<? super T>> void sort(List<T> list, int begin, int end) {
 		// check the indices and continue only if there are still elements to be sorted
 		if (begin < end) {
 			// we get the index of the sorted pivot and use it to recursively 
 			// call partition() method with the same parameters as the 
 			// quickSort() method, but with different indices
 			int partitionIndex = partition(list, begin, end);
-			quickSort(list, begin, partitionIndex - 1);
-			quickSort(list, partitionIndex + 1, end);
+			sort(list, begin, partitionIndex - 1);
+			sort(list, partitionIndex + 1, end);
         
 		}
 	

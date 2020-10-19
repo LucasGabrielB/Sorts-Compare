@@ -1,71 +1,46 @@
 package algorithms;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class MergeSort {
+public class MergeSort{
 	
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public static <T extends Comparable<? super T>> List<Comparable> sort(List<T> list){
-
-		// makes a copy of the list
-		List<Comparable> sortedList = new ArrayList<Comparable>();
-		for (int i = 0, size = list.size(); i < size; i++) {
-			sortedList.add(list.get(i));
-		}
+	
+	public static <T extends Comparable<? super T>> void sort(List<T> list){
 		
-		// sorts list using Merge sort method
-		mergeSort(sortedList);
+		mergeSort(list, 0, list.size()-1);
 		
-		// returns the sorted list
-		return sortedList;
 	}
-	
-	@SuppressWarnings({ "rawtypes" })
-	private static<T extends Comparable<? super T>> List<Comparable> merge(List<T> left, List<T> right) {
-        
-		List<Comparable> merged = new ArrayList<Comparable>();
-        
-        while (!left.isEmpty() && !right.isEmpty()) {
-            if (left.get(0).compareTo(right.get(0)) <= 0) {
-                merged.add(left.remove(0));
-            } 
-            else {
-                merged.add(right.remove(0));
+
+    public static <T extends Comparable<? super T>> void mergeSort(List<T> list, int start, int end){
+        if((end - start) >= 2){
+            int mid = (end - start)/2;
+            mergeSort(list, start, start + mid);
+            mergeSort(list, start + mid +1, end);
+
+            int i=start;
+            int j=start + mid +1;
+            while(i<j && j<=end){
+                if(list.get(i).compareTo(list.get(j)) > 0){
+                    list.add(i, list.remove(j));
+                    i++;
+                    j++;
+                }else if(list.get(i) == list.get(j)){
+                    list.add(i+1, list.remove(j));
+                    i++;
+                    j++;
+                }else{
+                    i++;
+                }
+            }  
+
+        }else{
+            if(end > start){
+                if(list.get(start).compareTo(list.get(end)) > 0){
+                    T endValue = list.remove(end);
+                    list.add(start, endValue);
+                }                
             }
         }
-        
-        merged.addAll(left);
-        merged.addAll(right);
-        
-        return merged;
     }
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	private static <T extends Comparable<? super T>> void mergeSort(List<T> list){
-        if (list.size() != 1) {
-            List<Comparable> left = new ArrayList<Comparable>();
-            List<Comparable> right = new ArrayList<Comparable>();
-            boolean logicalSwitch = true;
-            
-            while (!list.isEmpty()) {
-                if (logicalSwitch) {
-                    left.add(list.remove(0));
-                } 
-                else {
-                    right.add(list.remove(0));
-                }
-                
-                logicalSwitch = !logicalSwitch;
-            }
-            
-            mergeSort(left);
-            mergeSort(right);
-            
-            list.addAll(merge(left, right));
-            
-        }
-        
-    }
-    
 }

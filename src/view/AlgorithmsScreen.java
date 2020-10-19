@@ -1,5 +1,6 @@
 package view;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.awt.Color;
 import java.awt.Cursor;
@@ -19,8 +20,12 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumnModel;
-
+import algorithms.BubbleSort;
+import algorithms.InsertionSort;
+import algorithms.MergeSort;
 import algorithms.Quicksort;
+import utils.AlgorithmStatistics;
+import utils.AlgorithmsRank;
 
 public class AlgorithmsScreen {
 	
@@ -31,8 +36,8 @@ public class AlgorithmsScreen {
 	private List originalList;
 
 	public <T extends Comparable<? super T>> AlgorithmsScreen(List<T> list) {
-		JPanelAlgorithmsScreen algorithmsScreenPanel = new JPanelAlgorithmsScreen();
 		this.originalList = list;
+		JPanelAlgorithmsScreen algorithmsScreenPanel = new JPanelAlgorithmsScreen();
 		
 		frame = new JFrame();
 		frame.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -113,16 +118,19 @@ public class AlgorithmsScreen {
 			
 			resultsTableScrollPane.setBounds(50, 130, 618, 143);
 			resultsTableScrollPane.setViewportView(resultsTable);
+			
+			ArrayList<AlgorithmStatistics> algorithmRank = compareAlgorithms().getRank();
+			
 			resultsTable.setModel(new javax.swing.table.DefaultTableModel(
 					new Object[][]{
 						// TODO
-				        {"1°", "Algoritmo nome", "tempo"},
-				        {"2°", "Algoritmo nome", "tempo"},
-				        {"3°", "Algoritmo nome", "tempo"},
-				        {"4°", "Algoritmo nome", "tempo"}
+				        {"1°", algorithmRank.get(0).getName(), algorithmRank.get(0).getTimeTaken()/ 1e9},
+				        {"2°", algorithmRank.get(1).getName(), algorithmRank.get(1).getTimeTaken()/ 1e9},
+				        {"3°", algorithmRank.get(2).getName(), algorithmRank.get(2).getTimeTaken()/ 1e9},
+				        {"4°", algorithmRank.get(3).getName(), algorithmRank.get(3).getTimeTaken()/ 1e9}
 				    },
 				    new String[]{
-				        "Possição", "Algoritmo", "Tempo gasto"
+				        "Possição", "Algoritmo", "Tempo gasto (s)"
 				    }
 			));
 			// change table style
@@ -151,13 +159,15 @@ public class AlgorithmsScreen {
 			
 			// view sorted values button click
 			sortedValuesButton.addActionListener(new ActionListener(){  
-				@SuppressWarnings("unchecked")
+				@SuppressWarnings({ "unchecked", "rawtypes" })
 				public void actionPerformed(ActionEvent e){
-					new ShowDataScreen(Quicksort.sort(originalList));
+					List<Comparable> sortedList = new ArrayList<Comparable>(originalList);
+					Quicksort.sort(sortedList);
+					new ShowDataScreen(sortedList); 
 				}
 			});
 			
-			// view sorted values button click
+			// view original values button click
 			originalValuesButton.addActionListener(new ActionListener(){  
 				@SuppressWarnings("unchecked")
 				public void actionPerformed(ActionEvent e){
@@ -181,6 +191,41 @@ public class AlgorithmsScreen {
 		    parent.dispose();
 		    removeAll();
 		   
+		}
+		
+		@SuppressWarnings({ "unchecked", "rawtypes" })
+		private AlgorithmsRank compareAlgorithms(){
+			AlgorithmsRank algorithmRank = new AlgorithmsRank();
+			
+			// sort List using Bubble Sort method
+			List<Comparable> list = new ArrayList<Comparable>(originalList);
+			long timeTaken = System.nanoTime();
+			BubbleSort.sort(list);
+			AlgorithmStatistics algorithmStatistics = new AlgorithmStatistics("Bubble Sort", System.nanoTime() - timeTaken);
+			algorithmRank.addAlgorithm(algorithmStatistics);
+			
+			// sort List using Insertion Sort method
+			list = new ArrayList<Comparable>(originalList);
+			timeTaken = System.nanoTime();
+			InsertionSort.sort(list);
+			algorithmStatistics = new AlgorithmStatistics("Insertion Sort", System.nanoTime()- timeTaken);
+			algorithmRank.addAlgorithm(algorithmStatistics);
+			
+			// sort List using Merge Sort method
+			list = new ArrayList<Comparable>(originalList);
+			timeTaken = System.nanoTime();
+			MergeSort.sort(list);
+			algorithmStatistics = new AlgorithmStatistics("Merge Sort", System.nanoTime()- timeTaken);
+			algorithmRank.addAlgorithm(algorithmStatistics);
+			
+			// sort List using Quicksort method
+			list = new ArrayList<Comparable>(originalList);
+			timeTaken = System.nanoTime();
+			Quicksort.sort(list);
+			algorithmStatistics = new AlgorithmStatistics("Quicksort", System.nanoTime()- timeTaken);
+			algorithmRank.addAlgorithm(algorithmStatistics);
+			
+			return algorithmRank;
 		}
 		
 	}

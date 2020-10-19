@@ -93,7 +93,7 @@ public class MainScreen {
 					// read values amount size
 					String sizeString = JOptionPane.showInputDialog(null, 
 						"Digite a quantidade de dados que deseja ordenar.",
-					    100);
+					    10000);
 					
 					// click cancel button
 					if(sizeString == null){
@@ -102,42 +102,47 @@ public class MainScreen {
 					// no value
 					else if(sizeString.trim().equalsIgnoreCase("")){
 						JOptionPane.showMessageDialog(null, "Digite um valor valido.");
+						return;
 					}
 					else{
+						int listSize;
 						try{
-							int listSize = Integer.parseInt(sizeString);
+							listSize = Integer.parseInt(sizeString);
 						
 							if (listSize <= 0) {
 								JOptionPane.showMessageDialog(null, "Digite um valor valido.");
-						    } 
-						    else {
-						    	// crates a list with random integer values 
-						    	ArrayList<Integer> valuesList = new ArrayList<Integer>();
-						    	
-						    	Random random = new Random();
-						    	for(int i = listSize; i > 0; i--){
-						    		valuesList.add(Math.abs(random.nextInt()));
-						    	}
-						    	
-						    	new AlgorithmsScreen(valuesList);
-						    	dispose();
+								return;
 						    }
-						
 						}
 						catch(Exception ex){
-							return;
-						
+							JOptionPane.showMessageDialog(null, "Digite um valor valido.");
+							return;						
 						}
+						    
+				    	// crates a list with random integer values 
+				    	ArrayList<Integer> valuesList = new ArrayList<Integer>();
+				    	
+				    	Random random = new Random();
+				    	for(int i = listSize; i > 0; i--){
+				    		valuesList.add(Math.abs(random.nextInt()));
+				    	}
+				    	
+				    	new AlgorithmsScreen(valuesList);
+				    	dispose();
 					
 					}
 				
 				}
 			});
 			
-			// chose file button click
+			// chose file button click TODO
 			openFileButton.addActionListener(new ActionListener(){  
 				public void actionPerformed(ActionEvent e){
 					ArrayList<Integer> valuesList = new ArrayList<Integer>();
+			    	Random random = new Random();
+			    	for(int i = 100; i > 0; i--){
+			    		valuesList.add(Math.abs(random.nextInt()));
+			    	}
 					new AlgorithmsScreen(valuesList); // TODO
 				}
 			});
