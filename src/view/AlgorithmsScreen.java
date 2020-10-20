@@ -43,7 +43,7 @@ public class AlgorithmsScreen {
 		frame.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 		frame.add(algorithmsScreenPanel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("Comparação dentre algoritmos de ordenação");
+		frame.setTitle("ComparaÃ§Ã£o dentre algoritmos de ordenaÃ§Ã£o");
 		frame.setResizable(false);
 		frame.pack();
 		frame.setLocationRelativeTo(null);
@@ -124,13 +124,13 @@ public class AlgorithmsScreen {
 			resultsTable.setModel(new javax.swing.table.DefaultTableModel(
 					new Object[][]{
 						// TODO
-				        {"1°", algorithmRank.get(0).getName(), algorithmRank.get(0).getTimeTaken()/ 1e9},
-				        {"2°", algorithmRank.get(1).getName(), algorithmRank.get(1).getTimeTaken()/ 1e9},
-				        {"3°", algorithmRank.get(2).getName(), algorithmRank.get(2).getTimeTaken()/ 1e9},
-				        {"4°", algorithmRank.get(3).getName(), algorithmRank.get(3).getTimeTaken()/ 1e9}
+				        {"1Â°", algorithmRank.get(0).getName(), algorithmRank.get(0).getTimeTaken()/ 1e9},
+				        {"2Â°", algorithmRank.get(1).getName(), algorithmRank.get(1).getTimeTaken()/ 1e9},
+				        {"3Â°", algorithmRank.get(2).getName(), algorithmRank.get(2).getTimeTaken()/ 1e9},
+				        {"4Â°", algorithmRank.get(3).getName(), algorithmRank.get(3).getTimeTaken()/ 1e9}
 				    },
 				    new String[]{
-				        "Possição", "Algoritmo", "Tempo gasto (s)"
+				        "PosiÃ§Ã£o", "Algoritmo", "Tempo gasto (s)"
 				    }
 			));
 			// change table style
