@@ -190,35 +190,38 @@ public class MainScreen {
 			        	String line = "";
 			        	
 			        	// skip header..
-			        	br.readLine(); br.readLine();
+			        	br.readLine(); br.readLine();br.readLine();
 			            
 			        	while ((line = br.readLine()) != null) {
-			            	String[] lineData = line.split(";");
-			            	WeatherData weatherData = new WeatherData();
-			            	
-			            	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HHHH");		
-			            	
-			            	Date date = simpleDateFormat.parse(lineData[0] + " " + lineData[1]);
-			            	weatherData.setDate(date);
-			            	weatherData.setTemperatureInst(Double.parseDouble((lineData[2].length() == 0)? "0" : lineData[2].replaceAll(",",".")));
-			            	weatherData.setTemperatureMin(Double.parseDouble((lineData[4].length() == 0)? "0" : lineData[4].replaceAll(",",".")));
-			            	weatherData.setTemperatureMax(Double.parseDouble((lineData[3].length() == 0)? "0" :lineData[3].replaceAll(",",".")));
-			            	weatherData.setAirHumidityInst(Double.parseDouble((lineData[5].length() == 0)? "0" :lineData[5].replaceAll(",",".")));
-			            	weatherData.setAirHumidityMax(Double.parseDouble((lineData[6].length() == 0)? "0" :lineData[6].replaceAll(",",".")));
-			            	weatherData.setAirHumidityMin(Double.parseDouble((lineData[7].length() == 0)? "0" :lineData[7].replaceAll(",",".")));
-			            	weatherData.setDewPointInst(Double.parseDouble((lineData[8].length() == 0)? "0" :lineData[8].replaceAll(",",".")));
-			            	weatherData.setDewPointMax(Double.parseDouble((lineData[9].length() == 0)? "0" :lineData[9].replaceAll(",",".")));
-			            	weatherData.setDewPointMin(Double.parseDouble((lineData[10].length() == 0)? "0" :lineData[10].replaceAll(",",".")));
-			            	weatherData.setPressureInst(Double.parseDouble((lineData[11].length() == 0)? "0" :lineData[11].replaceAll(",",".")));
-			            	weatherData.setPressureMax(Double.parseDouble((lineData[12].length() == 0)? "0" :lineData[12].replaceAll(",",".")));
-			            	weatherData.setPressureMin(Double.parseDouble((lineData[13].length() == 0)? "0" :lineData[13].replaceAll(",",".")));
-			            	weatherData.setWindVelocity(Double.parseDouble((lineData[14].length() == 0)? "0" :lineData[14].replaceAll(",",".")));
-			            	weatherData.setWindDirection(Double.parseDouble((lineData[15].length() == 0)? "0" :lineData[15].replaceAll(",",".")));
-			            	weatherData.setWindGust(Double.parseDouble((lineData[16].length() == 0)? "0" :lineData[16].replaceAll(",",".")));
-			            	weatherData.setRadiation(Double.parseDouble((lineData[17].length() == 0)? "0" :lineData[17].replaceAll(",",".")));
-			            	weatherData.setRain(Double.parseDouble((lineData[18].length() == 0)? "0" :lineData[18].replaceAll(",",".")));
-			            	
-			            	valuesList.add(weatherData);
+			        		try{
+				            	String[] lineData = line.split(";");
+				            	WeatherData weatherData = new WeatherData();
+				            	
+				            	SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy HHHH");		
+				            	
+				            	Date date = simpleDateFormat.parse(lineData[0] + " " + lineData[1]);
+				            	weatherData.setDate(date);
+				            	weatherData.setTemperatureInst(Double.parseDouble((lineData[2].length() == 0)? "0" : lineData[2].replaceAll(",",".")));
+				            	weatherData.setTemperatureMin(Double.parseDouble((lineData[4].length() == 0)? "0" : lineData[4].replaceAll(",",".")));
+				            	weatherData.setTemperatureMax(Double.parseDouble((lineData[3].length() == 0)? "0" :lineData[3].replaceAll(",",".")));
+				            	weatherData.setAirHumidityInst(Double.parseDouble((lineData[5].length() == 0)? "0" :lineData[5].replaceAll(",",".")));
+				            	weatherData.setAirHumidityMax(Double.parseDouble((lineData[6].length() == 0)? "0" :lineData[6].replaceAll(",",".")));
+				            	weatherData.setAirHumidityMin(Double.parseDouble((lineData[7].length() == 0)? "0" :lineData[7].replaceAll(",",".")));
+				            	weatherData.setDewPointInst(Double.parseDouble((lineData[8].length() == 0)? "0" :lineData[8].replaceAll(",",".")));
+				            	weatherData.setDewPointMax(Double.parseDouble((lineData[9].length() == 0)? "0" :lineData[9].replaceAll(",",".")));
+				            	weatherData.setDewPointMin(Double.parseDouble((lineData[10].length() == 0)? "0" :lineData[10].replaceAll(",",".")));
+				            	weatherData.setPressureInst(Double.parseDouble((lineData[11].length() == 0)? "0" :lineData[11].replaceAll(",",".")));
+				            	weatherData.setPressureMax(Double.parseDouble((lineData[12].length() == 0)? "0" :lineData[12].replaceAll(",",".")));
+				            	weatherData.setPressureMin(Double.parseDouble((lineData[13].length() == 0)? "0" :lineData[13].replaceAll(",",".")));
+				            	weatherData.setWindVelocity(Double.parseDouble((lineData[14].length() == 0)? "0" :lineData[14].replaceAll(",",".")));
+				            	weatherData.setWindDirection(Double.parseDouble((lineData[15].length() == 0)? "0" :lineData[15].replaceAll(",",".")));
+				            	weatherData.setWindGust(Double.parseDouble((lineData[16].length() == 0)? "0" :lineData[16].replaceAll(",",".")));
+				            	weatherData.setRadiation(Double.parseDouble((lineData[17].length() == 0)? "0" :lineData[17].replaceAll(",",".")));
+				            	weatherData.setRain(Double.parseDouble((lineData[18].length() == 0)? "0" :lineData[18].replaceAll(",",".")));
+				            	
+				            	valuesList.add(weatherData);
+			        		}
+			        		catch (ArrayIndexOutOfBoundsException ex){} // ignoring rows with missing data
 			            }
 			        
 			        } 

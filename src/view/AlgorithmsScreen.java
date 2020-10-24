@@ -26,6 +26,7 @@ import algorithms.MergeSort;
 import algorithms.Quicksort;
 import utils.AlgorithmStatistics;
 import utils.AlgorithmsRank;
+import utils.WeatherData;
 
 public class AlgorithmsScreen {
 	
@@ -43,7 +44,7 @@ public class AlgorithmsScreen {
 		frame.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 		frame.add(algorithmsScreenPanel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("Comparação dentre algoritmos de ordenação");
+		frame.setTitle("Comparação dentre algoritmos de ordenação - Resultados");
 		frame.setResizable(false);
 		frame.pack();
 		frame.setLocationRelativeTo(null);
@@ -84,7 +85,7 @@ public class AlgorithmsScreen {
 			JButton originalValuesButton = new JButton(new ImageIcon(originalValuesButtonImage));
 			JLabel backgroundLabel = new JLabel(new ImageIcon(backgroundImage));
 			JLabel vizualizeValuesLabel = new JLabel("Vizualizar dados:");
-			JLabel resultLabel = new JLabel("Resultado:");
+			JLabel resultLabel = new JLabel("Resultado da ordenação de "+originalList.size()+" dados:");
 			
 			// configure screen components
 			backgroundLabel.setBounds(0, 0, 720, 480);
@@ -93,7 +94,7 @@ public class AlgorithmsScreen {
 			vizualizeValuesLabel.setFont(new Font("Arial", Font.BOLD, 20));
 			vizualizeValuesLabel.setForeground(Color.white);
 			
-			resultLabel.setBounds(40, 85, 200, 40);
+			resultLabel.setBounds(50, 85, 400, 40);
 			resultLabel.setFont(new Font("Arial", Font.BOLD, 20));
 			resultLabel.setForeground(Color.white);
 			
@@ -104,7 +105,7 @@ public class AlgorithmsScreen {
 			sortedValuesButton.setContentAreaFilled(false);
 			sortedValuesButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			
-			comebackButton.setBounds(10, 10, 145, 50);
+			comebackButton.setBounds(7, 7, 145, 50);
 			comebackButton.setOpaque(false);
 			comebackButton.setContentAreaFilled(false);
 			comebackButton.setBorderPainted(false);
@@ -159,9 +160,9 @@ public class AlgorithmsScreen {
 			
 			// view sorted values button click
 			sortedValuesButton.addActionListener(new ActionListener(){  
-				@SuppressWarnings({ "unchecked", "rawtypes" })
+				@SuppressWarnings({ "unchecked"})
 				public void actionPerformed(ActionEvent e){
-					List<Comparable> sortedList = new ArrayList<Comparable>(originalList);
+					List<WeatherData> sortedList = new ArrayList<WeatherData>(originalList);
 					Quicksort.sort(sortedList);
 					new ShowDataScreen(sortedList); 
 				}

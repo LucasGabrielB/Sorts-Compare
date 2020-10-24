@@ -53,7 +53,6 @@ public class WeatherData implements Comparable<WeatherData>{
 	
 	@Override
 	public int compareTo(WeatherData wd) {
-		// TODO, compare by what ???
 		if(this.temperatureInst > wd.getTemperatureInst()){
 			return 1;
 		}
