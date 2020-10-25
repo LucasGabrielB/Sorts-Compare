@@ -44,7 +44,7 @@ public class AlgorithmsScreen {
 		frame.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 		frame.add(algorithmsScreenPanel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("Comparação dentre algoritmos de ordenação - Resultados");
+		frame.setTitle("ComparaÃ§Ã£o dentre algoritmos de ordenaÃ§Ã£o - Resultados");
 		frame.setResizable(false);
 		frame.pack();
 		frame.setLocationRelativeTo(null);
@@ -84,8 +84,8 @@ public class AlgorithmsScreen {
 			JButton comebackButton = new JButton(new ImageIcon(returnButtonImage));
 			JButton originalValuesButton = new JButton(new ImageIcon(originalValuesButtonImage));
 			JLabel backgroundLabel = new JLabel(new ImageIcon(backgroundImage));
-			JLabel vizualizeValuesLabel = new JLabel("Vizualizar dados:");
-			JLabel resultLabel = new JLabel("Resultado da ordenação de "+originalList.size()+" dados:");
+			JLabel vizualizeValuesLabel = new JLabel("Visualizar dados:");
+			JLabel resultLabel = new JLabel("Resultado da ordenaÃ§Ã£o de "+originalList.size()+" dados:");
 			
 			// configure screen components
 			backgroundLabel.setBounds(0, 0, 720, 480);
@@ -125,13 +125,13 @@ public class AlgorithmsScreen {
 			resultsTable.setModel(new javax.swing.table.DefaultTableModel(
 					new Object[][]{
 						// TODO
-				        {"1°", algorithmRank.get(0).getName(), algorithmRank.get(0).getTimeTaken()/ 1e9},
-				        {"2°", algorithmRank.get(1).getName(), algorithmRank.get(1).getTimeTaken()/ 1e9},
-				        {"3°", algorithmRank.get(2).getName(), algorithmRank.get(2).getTimeTaken()/ 1e9},
-				        {"4°", algorithmRank.get(3).getName(), algorithmRank.get(3).getTimeTaken()/ 1e9}
+				        {"1Â°", algorithmRank.get(0).getName(), algorithmRank.get(0).getTimeTaken()/ 1e9},
+				        {"2Â°", algorithmRank.get(1).getName(), algorithmRank.get(1).getTimeTaken()/ 1e9},
+				        {"3Â°", algorithmRank.get(2).getName(), algorithmRank.get(2).getTimeTaken()/ 1e9},
+				        {"4Â°", algorithmRank.get(3).getName(), algorithmRank.get(3).getTimeTaken()/ 1e9}
 				    },
 				    new String[]{
-				        "Posição", "Algoritmo", "Tempo gasto (s)"
+				        "PosiÃ§Ã£o", "Algoritmo", "Tempo gasto (s)"
 				    }
 			));
 			// change table style
