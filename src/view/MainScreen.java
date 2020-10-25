@@ -173,7 +173,7 @@ public class MainScreen {
 				}
 			});
 			
-			// chose file button click TODO
+			// chose file button click
 			openFileButton.addActionListener(new ActionListener(){  
 				public void actionPerformed(ActionEvent e){
 					
@@ -190,8 +190,9 @@ public class MainScreen {
 			        	String line = "";
 			        	
 			        	// skip header..
-			        	br.readLine(); br.readLine();br.readLine();
+			        	br.readLine(); br.readLine();
 			            
+			        	// reads line in a new instance of a WeatherData
 			        	while ((line = br.readLine()) != null) {
 			        		try{
 				            	String[] lineData = line.split(";");
@@ -235,7 +236,7 @@ public class MainScreen {
 			            return;
 			        }
 					
-					new AlgorithmsScreen(valuesList); // TODO
+					new AlgorithmsScreen(valuesList);
 					dispose();
 				
 				}

@@ -25,7 +25,7 @@ public class ShowDataScreen {
 		frame.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 		frame.add(menuScreen);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		frame.setTitle("Comparação dentre algoritmos de ordenação - Vizualição dos dados");
+		frame.setTitle("Comparação dentre algoritmos de ordenação - Visualização dos dados");
 		frame.setResizable(false);
 		frame.pack();
 		frame.setLocationRelativeTo(null);
@@ -57,6 +57,7 @@ public class ShowDataScreen {
 			
 			DefaultTableModel tableModel = new DefaultTableModel();
 			
+			// set table columns title
 			tableModel.setColumnIdentifiers(new String[]{
 			    	"Data Hora", "Temp. Ins. (C)",
 			    	"Temp. Max. (C)", "Temp. Min. (C)",
@@ -70,6 +71,7 @@ public class ShowDataScreen {
 
 			    });
 			
+			// add table rows
 			for(int i = 0, size = list.size(); i < size; i++ ){
 				tableModel.addRow(new Object[]{
 						list.get(i).getDate(),
