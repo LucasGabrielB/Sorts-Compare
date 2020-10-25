@@ -44,7 +44,7 @@ public class AlgorithmsScreen {
 		frame.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
 		frame.add(algorithmsScreenPanel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("ComparaÃ§Ã£o dentre algoritmos de ordenaÃ§Ã£o - Resultados");
+		frame.setTitle("Comparação dentre algoritmos de ordenação - Resultados");
 		frame.setResizable(false);
 		frame.pack();
 		frame.setLocationRelativeTo(null);
@@ -61,7 +61,7 @@ public class AlgorithmsScreen {
 			
 			// open image files
 			try{
-		    	backgroundImage = ImageIO.read(this.getClass().getResourceAsStream("/images/mainScreenBackground.jpg"));
+		    	backgroundImage = ImageIO.read(this.getClass().getResourceAsStream("/images/algorithmsScreenBackground.jpg"));
 		    	sortedValuesButtonImage = ImageIO.read(this.getClass().getResourceAsStream("/images/sortedValuesButton.png"));
 		    	returnButtonImage = ImageIO.read(this.getClass().getResourceAsStream("/images/returnButton.png"));
 		    	originalValuesButtonImage = ImageIO.read(this.getClass().getResourceAsStream("/images/originalValuesButton.png"));
@@ -85,7 +85,7 @@ public class AlgorithmsScreen {
 			JButton originalValuesButton = new JButton(new ImageIcon(originalValuesButtonImage));
 			JLabel backgroundLabel = new JLabel(new ImageIcon(backgroundImage));
 			JLabel vizualizeValuesLabel = new JLabel("Visualizar dados:");
-			JLabel resultLabel = new JLabel("Resultado da ordenaÃ§Ã£o de "+originalList.size()+" dados:");
+			JLabel resultLabel = new JLabel("Resultado da ordenação de "+originalList.size()+" dados:");
 			
 			// configure screen components
 			backgroundLabel.setBounds(0, 0, 720, 480);
@@ -97,7 +97,6 @@ public class AlgorithmsScreen {
 			resultLabel.setBounds(50, 85, 400, 40);
 			resultLabel.setFont(new Font("Arial", Font.BOLD, 20));
 			resultLabel.setForeground(Color.white);
-			
 			
 			sortedValuesButton.setBounds(265, 360, 200, 45);
 			sortedValuesButton.setOpaque(false);
@@ -125,13 +124,13 @@ public class AlgorithmsScreen {
 			resultsTable.setModel(new javax.swing.table.DefaultTableModel(
 					new Object[][]{
 						// TODO
-				        {"1Â°", algorithmRank.get(0).getName(), algorithmRank.get(0).getTimeTaken()/ 1e9},
-				        {"2Â°", algorithmRank.get(1).getName(), algorithmRank.get(1).getTimeTaken()/ 1e9},
-				        {"3Â°", algorithmRank.get(2).getName(), algorithmRank.get(2).getTimeTaken()/ 1e9},
-				        {"4Â°", algorithmRank.get(3).getName(), algorithmRank.get(3).getTimeTaken()/ 1e9}
+				        {"1°", algorithmRank.get(0).getName(), algorithmRank.get(0).getTimeTaken()/ 1e9},
+				        {"2°", algorithmRank.get(1).getName(), algorithmRank.get(1).getTimeTaken()/ 1e9},
+				        {"3°", algorithmRank.get(2).getName(), algorithmRank.get(2).getTimeTaken()/ 1e9},
+				        {"4°", algorithmRank.get(3).getName(), algorithmRank.get(3).getTimeTaken()/ 1e9}
 				    },
 				    new String[]{
-				        "PosiÃ§Ã£o", "Algoritmo", "Tempo gasto (s)"
+				        "Posição", "Algoritmo", "Tempo gasto (s)"
 				    }
 			));
 			// change table style
